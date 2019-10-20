@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
-import { Link, withRouter } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import { withRouter } from 'react-router-dom';
+import { withStyles  } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+
+const styles = theme => ({
+  appbar: {
+    alignItems: 'center',
+  }
+});
 
 @inject('rootStore')
 @observer
@@ -36,48 +39,14 @@ class Navbar extends Component {
     }
 
     render() {
+      const { classes } = this.props;
         return (
-          <AppBar position="static" color="default">
+          <AppBar position="static" color="default" className={classes.appbar}>
             <Toolbar>
-              <img width="200px" height="50px" src="" alt="logo" />
-              <Link to="/teamsummary">
-                <Button color="inherit">Team Summary</Button>
-              </Link>
-              <Link to="/wellness">
-                <Button color="inherit">Wellness/RPE</Button>
-              </Link>
-              <Link to="/trainingload">
-                <Button color="inherit">Training Load</Button>
-              </Link>
-              <div style={{ flex: 1 }} />
-              <div>
-                <IconButton
-                  aria-owns={this.ui.menuAnchorEl ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleOpen}
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={this.ui.menuAnchorEl}
-                  anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                  transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                  open={Boolean(this.ui.menuAnchorEl)}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <MenuItem onClick={this.handleSignOut}>Sign out</MenuItem>
-                </Menu>
-              </div>
-            </Toolbar>
+              <Typography variant="h2">
+                PWC EPGP Standing
+              </Typography>
+             </Toolbar>
           </AppBar>
         );
     }
@@ -88,4 +57,4 @@ Navbar.wrappedComponent.propTypes = {
   rootStore: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
-export default withRouter(Navbar);
+export default withStyles(styles)(Navbar);
