@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import Table from '@material-ui/core/Table';
+import Grid from '@material-ui/core/Grid';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -18,7 +19,8 @@ const styles = theme => ({
     },
     bg: {
         backgroundColor: 'black',
-    }
+    },
+    paperContainer: {overflowX: 'auto'}
   });
 
   const StyledTableCell = withStyles(theme => ({
@@ -79,8 +81,8 @@ class EPGP extends Component {
         const { rootStore, classes } = this.props;
         const members = rootStore.data.members;
         const loading = members.length === 0 ?  <CircularProgress className={classes.loading}/> : (
-            <div className={classes.bg}>
-                <Paper >
+            <Grid className={classes.bg} item xs={12}>
+                <Paper className={classes.paperContainer}>
                     <Table size="small" aria-label="simple table">
                         <TableHead>
                         <TableRow>
@@ -107,7 +109,7 @@ class EPGP extends Component {
                     </Table>
                 </Paper>   
                 <Footer/>
-            </div>
+            </Grid>
         );
         return (
            loading
