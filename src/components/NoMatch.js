@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Redirect } from 'react-router-dom';
-import Menu from './Menu';
+import Menu from './Head';
 
 
 @inject('rootStore')

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Upload from './components/Upload';
 import NoMatch from './components/NoMatch';
 import EPGP from './components/EPGP';
-import Navbar from './components/Menu';
+import Navbar from './components/Head'; 
 
 @inject('rootStore')
 @observer
