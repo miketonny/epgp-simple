@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles  } from '@material-ui/core/styles';
+import moment from "moment";
 import PropTypes from 'prop-types';
 
 const styles = () => ({
@@ -14,14 +15,20 @@ const styles = () => ({
   }
 });
 
-@inject('rootStore')
+@inject('rootStore', 'db')
 @observer
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    const { rootStore, history } = this.props;
+    const { rootStore, history, db } = this.props;
     this.ui = rootStore.ui;
+    this.db = db;
     this.history = history;
+    this.data = rootStore.data;
+  }
+
+  componentDidMount() {
+    this.data.getDate(this.db);
   }
 
     handleClose = () => {
@@ -49,6 +56,7 @@ class Navbar extends Component {
               </Typography> 
           </AppBar>
           <Typography className={classes.appbar} variant="h6">PR(Loot priority) = EP/GP, weekly decay 10% on both EP &amp; GP</Typography>
+          <Typography className={classes.appbar} variant="h6">Reporting Date: {this.ui.reportDate}</Typography>
           </div>
 
         );

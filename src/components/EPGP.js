@@ -20,7 +20,7 @@ const styles = theme => ({
     bg: {
         backgroundColor: 'black',
     },
-    paperContainer: {overflowX: 'auto'}
+    paperContainer: {overflowX: 'auto'},
   });
 
   const StyledTableCell = withStyles(theme => ({
@@ -83,7 +83,7 @@ class EPGP extends Component {
         const loading = members.length === 0 ?  <CircularProgress className={classes.loading}/> : (
             <Grid className={classes.bg} item xs={12}>
                 <Paper className={classes.paperContainer}>
-                    <Table size="small" aria-label="simple table">
+                    <Table size="small" stickyHeader aria-label="simple table">
                         <TableHead>
                         <TableRow>
                             <StyledTableCell >Name</StyledTableCell >

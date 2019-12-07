@@ -11,6 +11,8 @@ export default class UIStore {
 
     @observable failedLogin;
 
+    @observable reportDate;
+
     constructor(rootStore) {
         this.root = rootStore;
         this.user = {
